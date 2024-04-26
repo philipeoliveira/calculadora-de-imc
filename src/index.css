@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+   .my-custom-style-text-shadow {
+      text-shadow: 0px 1px 0px #0f172a /* slate-900 */;
+   }
+}
