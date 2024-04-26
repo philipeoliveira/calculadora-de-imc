@@ -1,4 +1,5 @@
 import LogoIMC from './assets/logo-img.svg';
+import { Input } from './Input';
 
 function App() {
    return (
@@ -13,34 +14,16 @@ function App() {
          <main className='flex flex-col gap-2'>
             <section id='form'>
                <form className='flex flex-col gap-4'>
-                  <div>
-                     <label
-                        htmlFor='person-weight'
-                        className='flex flex-col py-2 px-3 font-medium'
-                     >
-                        Peso (kg)
-                     </label>
-                     <input
-                        type='number'
-                        id='person-weight'
-                        className='w-full p-2 px-3 bg-transparent rounded-lg outline-none border border-slate-400 hover:border-white focus:border-white text-white'
-                        placeholder='Digite seu peso aqui em quilogramas'
-                     />
-                  </div>
-                  <div>
-                     <label
-                        htmlFor='person-height'
-                        className='flex flex-col py-2 px-3 font-medium'
-                     >
-                        Altura (cm)
-                     </label>
-                     <input
-                        type='number'
-                        id='person-height'
-                        className='w-full p-2 px-3 bg-transparent rounded-lg outline-none border border-slate-400 hover:border-white focus:border-white'
-                        placeholder='Sua altura aqui em centímetros'
-                     />
-                  </div>
+                  <Input
+                     id='person-weight'
+                     textLabel='Peso (kg)'
+                     placeholder='Digite seu peso aqui em quilogramas'
+                  />
+                  <Input
+                     id='person-height'
+                     textLabel='Altura (cm)'
+                     placeholder='Sua altura aqui em centímetros'
+                  />
                   <button className='w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
                      Calcular IMC
                   </button>
