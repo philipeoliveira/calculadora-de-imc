@@ -1,5 +1,7 @@
 import LogoIMC from './assets/logo-img.svg';
 import { Input } from './Input';
+import { Calculator, ExternalLink } from 'lucide-react';
+import { Table } from './Table';
 
 function App() {
    return (
@@ -24,7 +26,8 @@ function App() {
                      textLabel='Altura (cm)'
                      placeholder='Sua altura aqui em centímetros'
                   />
-                  <button className='w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
+                  <button className='flex gap-2 items-center justify-center w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
+                     <Calculator size={16} />
                      Calcular IMC
                   </button>
                </form>
@@ -37,51 +40,7 @@ function App() {
                   Preencha os campos acima e descubra se está no seu peso ideal
                </p>
             </section>
-            <section id='reference-table'>
-               <span className='block h-1 p-1 bg-white/5 rounded-t-lg'></span>
-               <table className='w-full mx-auto'>
-                  <caption className='pb-5 text-center text-lg text-slate-400 font-medium w-full mx-auto invisible hidden'>
-                     Tabela com valores de referência
-                  </caption>
-                  <thead>
-                     <tr className='bg-white/5 font-medium [&>th]:pb-2.5 [&>th]:px-5'>
-                        <th>IMC</th>
-                        <th>Classificação</th>
-                     </tr>
-                  </thead>
-                  <tbody className='font-normal text-center [&>tr:nth-child(even)]:bg-white/5 [&>tr:nth-child(odd)]:bg-white/10 [&>tr>td]:py-2.5 [&>tr>td]:px-5'>
-                     <tr>
-                        <td>17 ou menor</td>
-                        <td>Muito abaixo do peso</td>
-                     </tr>
-                     <tr>
-                        <td>17 a 18,49</td>
-                        <td>Abaixo do peso</td>
-                     </tr>
-                     <tr>
-                        <td>18,5 a 24,99</td>
-                        <td>Peso normal</td>
-                     </tr>
-                     <tr>
-                        <td>25 a 29,99</td>
-                        <td>Acima do peso</td>
-                     </tr>
-                     <tr>
-                        <td>30 a 34,99</td>
-                        <td>Obesidade I</td>
-                     </tr>
-                     <tr>
-                        <td>35 a 39,99</td>
-                        <td>Obesidade II (severa)</td>
-                     </tr>
-                     <tr>
-                        <td>40 ou maior</td>
-                        <td>Obesidade III (mórbida)</td>
-                     </tr>
-                  </tbody>
-               </table>
-               <span className='block h-1 p-2 bg-white/5 rounded-b-lg'></span>
-            </section>
+            <Table />
          </main>
          <footer className='w-full border-y border-y-white/10 pt-2 pb-3 mt-8'>
             <p className='flex items-center justify-center gap-2'>
@@ -94,42 +53,7 @@ function App() {
                >
                   Philipe Oliveira
                </a>
-               <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='15'
-                  height='15'
-                  fill='white'
-                  viewBox='0 0 256 256'
-               >
-                  <rect width='256' height='256' fill='none'></rect>
-                  <polyline
-                     points='216 100 216 40 156 40'
-                     fill='none'
-                     stroke='white'
-                     stroke-linecap='round'
-                     stroke-linejoin='round'
-                     stroke-width='16'
-                  ></polyline>
-                  <line
-                     x1='144'
-                     y1='112'
-                     x2='216'
-                     y2='40'
-                     fill='none'
-                     stroke='white'
-                     stroke-linecap='round'
-                     stroke-linejoin='round'
-                     stroke-width='16'
-                  ></line>
-                  <path
-                     d='M184,144v64a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8h64'
-                     fill='none'
-                     stroke='white'
-                     stroke-linecap='round'
-                     stroke-linejoin='round'
-                     stroke-width='16'
-                  ></path>
-               </svg>
+               <ExternalLink size={16} />
             </p>
          </footer>
       </div>
