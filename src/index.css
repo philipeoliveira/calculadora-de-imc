@@ -7,3 +7,7 @@
       text-shadow: 0px 1px 0px #0f172a /* slate-900 */;
    }
 }
+
+body {
+   background: linear-gradient(180deg, #1e293b, #0f172a); /* slate-900 e 950 */
+}
