@@ -1,3 +1,4 @@
+import './App.css';
 import LogoIMC from './assets/logo-img.svg';
 import { Input } from './Input';
 import { Calculator, ExternalLink } from 'lucide-react';

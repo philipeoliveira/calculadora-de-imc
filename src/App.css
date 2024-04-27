@@ -1,0 +1,14 @@
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-button {
+   width: 20px;
+   height: 10px;
+}
+body::-webkit-scrollbar-thumb {
+   background-color: #64748b; /* slate-500 */
+   border: 5px solid #0f172a; /* slate-900 */
+   border-radius: 20px;
+}
+body::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:active {
+   background-color: #475569; /* slate-600 */
+}
