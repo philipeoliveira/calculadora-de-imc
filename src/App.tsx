@@ -1,9 +1,9 @@
-import './App.css';
 import LogoIMC from './assets/logo-img.svg';
+import { Calculator, ExternalLink } from 'lucide-react';
+
 import { Input } from './Input';
 import { Label } from './Label';
 import { Table } from './Table';
-import { Calculator, ExternalLink } from 'lucide-react';
 
 function App() {
    return (
