@@ -1,6 +1,6 @@
 import { CircleAlert, ThumbsDown, ThumbsUp } from 'lucide-react';
 
-export function Table() {
+export function ReferenceTable() {
    return (
       <section id='reference-table'>
          <span className='block h-1 p-1 bg-white/5 rounded-t-lg'></span>

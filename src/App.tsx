@@ -3,7 +3,7 @@ import { Calculator, ExternalLink } from 'lucide-react';
 
 import { Input } from './Input';
 import { Label } from './Label';
-import { Table } from './Table';
+import { ReferenceTable } from './ReferenceTable';
 
 function App() {
    return (
@@ -48,7 +48,7 @@ function App() {
                   Preencha os campos acima e descubra se está no seu peso ideal
                </p>
             </section>
-            <Table />
+            <ReferenceTable />
          </main>
          <footer className='w-full border-y border-y-white/10 pt-2 pb-3 mt-8'>
             <p className='flex items-center justify-center gap-2'>
