@@ -1,8 +1,9 @@
 import './App.css';
 import LogoIMC from './assets/logo-img.svg';
 import { Input } from './Input';
-import { Calculator, ExternalLink } from 'lucide-react';
+import { Label } from './Label';
 import { Table } from './Table';
+import { Calculator, ExternalLink } from 'lucide-react';
 
 function App() {
    return (
@@ -17,16 +18,22 @@ function App() {
          <main className='flex flex-col gap-2'>
             <section id='form'>
                <form className='flex flex-col gap-4'>
-                  <Input
-                     id='person-weight'
-                     textLabel='Peso (kg)'
-                     placeholder='Digite seu peso aqui em quilogramas'
-                  />
-                  <Input
-                     id='person-height'
-                     textLabel='Altura (cm)'
-                     placeholder='Sua altura aqui em centímetros'
-                  />
+                  <div>
+                     <Label htmlFor='person-weight'>Peso (kg)</Label>
+                     <Input
+                        id='person-weight'
+                        name='person-weight'
+                        placeholder='Digite seu peso aqui em quilogramas'
+                     />
+                  </div>
+                  <div>
+                     <Label htmlFor='person-height'>Altura (cm)</Label>
+                     <Input
+                        id='person-height'
+                        name='person-height'
+                        placeholder='Sua altura aqui em centímetros'
+                     />
+                  </div>
                   <button className='flex gap-2 items-center justify-center w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
                      <Calculator size={16} />
                      Calcular IMC
