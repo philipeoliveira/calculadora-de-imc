@@ -16,7 +16,7 @@ export function ReferenceTable() {
             </thead>
             <tbody className='font-normal text-center [&>tr:nth-child(even)]:bg-white/5 [&>tr:nth-child(odd)]:bg-white/10 [&>tr>td]:py-2.5 [&>tr>td]:px-5'>
                <tr>
-                  <td>17 ou menor</td>
+                  <td>Menor que 17</td>
                   <td className='flex gap-2 items-center justify-center'>
                      <ThumbsDown size={16} />
                      Muito abaixo do peso
