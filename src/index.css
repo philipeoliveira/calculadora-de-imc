@@ -10,6 +10,10 @@
 
 body {
    background: linear-gradient(180deg, #1e293b, #0f172a); /* slate-900 e 950 */
+   font-family: 'Space Grotesk', sans-serif;
+   font-optical-sizing: auto;
+   font-weight: <weight>;
+   font-style: normal;
 }
 
 body::-webkit-scrollbar,
