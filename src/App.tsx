@@ -77,8 +77,6 @@ function App() {
          IMCFormatted,
          IMCClassification,
       });
-
-      // Clear form
    }
 
    return (
