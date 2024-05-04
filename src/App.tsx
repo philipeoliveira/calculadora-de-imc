@@ -1,11 +1,86 @@
+import { useState } from 'react';
 import LogoIMC from './assets/logo-img.svg';
-import { Calculator, ExternalLink } from 'lucide-react';
+import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
 
 import { Input } from './Input';
 import { Label } from './Label';
 import { ReferenceTable } from './ReferenceTable';
+import { ClassificationIcon } from './ClassificationIcon';
+
+import { twMerge } from 'tailwind-merge';
+
+import {
+   calculateIMC,
+   IMCClassificationFn,
+   classificationColorFn,
+} from './lib/IMC';
+
+interface IMCDataProps {
+   weight: number;
+   height: number;
+   IMC: number;
+   IMCFormatted: string;
+   IMCClassification: string;
+}
 
 function App() {
+   const [IMCData, setIMCData] = useState<null | IMCDataProps>(null);
+
+   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+      e.preventDefault();
+
+      // Get data from form
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData) as {
+         weight: string;
+         height: string;
+      };
+
+      // Handle empty fields
+      const { weight, height } = data;
+      if (!weight || !height) {
+         alert('Preencha todos os campos.');
+         return;
+      }
+
+      // Parse handle string to number
+      const weightNumber = parseFloat(weight.replace(',', '.'));
+      const heightNumber = parseFloat(height.replace(',', '.')) / 100;
+
+      if (isNaN(weightNumber) || isNaN(heightNumber)) {
+         alert('Preencha somente com números.');
+         return;
+      }
+
+      // Handle invalid numbers
+      if (weightNumber < 1 || weightNumber > 700) {
+         alert('Preencha um peso entre 1kg e 700kg.');
+         return;
+      }
+
+      if (heightNumber < 0.2 || heightNumber > 2.5) {
+         alert('Preencha uma altura entre 20cm e 2,5m.');
+         return;
+      }
+
+      // Calculate IMC
+      const IMC = calculateIMC(weightNumber, heightNumber);
+      const IMCFormatted = IMC.toFixed(1);
+
+      const IMCClassification = IMCClassificationFn(IMC);
+
+      // Set result
+      setIMCData({
+         weight: weightNumber,
+         height: heightNumber,
+         IMC,
+         IMCFormatted,
+         IMCClassification,
+      });
+
+      // Clear form
+   }
+
    return (
       <div className='max-w-lg mx-auto flex flex-col gap-6'>
          <header className='flex justify-center'>
@@ -17,20 +92,20 @@ function App() {
          </header>
          <main className='flex flex-col gap-2'>
             <section id='form'>
-               <form className='flex flex-col gap-4'>
+               <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                   <div>
-                     <Label htmlFor='person-weight'>Peso (kg)</Label>
+                     <Label htmlFor='weight'>Peso (kg)</Label>
                      <Input
-                        id='person-weight'
-                        name='person-weight'
+                        id='weight'
+                        name='weight'
                         placeholder='Digite seu peso aqui em quilogramas'
                      />
                   </div>
                   <div>
-                     <Label htmlFor='person-height'>Altura (cm)</Label>
+                     <Label htmlFor='height'>Altura (cm)</Label>
                      <Input
-                        id='person-height'
-                        name='person-height'
+                        id='height'
+                        name='height'
                         placeholder='Sua altura aqui em centímetros'
                      />
                   </div>
@@ -42,11 +117,46 @@ function App() {
             </section>
             <section
                id='result'
-               className='flex flex-col items-center justify-center rounded-lg border border-white/10 my-10 px-4 h-32'
+               className='flex flex-col justify-center rounded-lg border border-white/10 my-10 px-4 h-32'
             >
-               <p className='text-center'>
-                  Preencha os campos acima e descubra se está no seu peso ideal
-               </p>
+               {IMCData ? (
+                  <div className='grid grid-flow-col place-items-center gap-5'>
+                     <div
+                        className={twMerge(
+                           'flex flex-col items-center gap-1 text-lg',
+                           classificationColorFn(IMCData.IMC)
+                        )}
+                     >
+                        <ClassificationIcon IMC={IMCData.IMC} iconSize={22} />
+                        {`${IMCData.IMCClassification}`}
+                     </div>
+
+                     <div
+                        className={twMerge(
+                           'text-[3.25rem] font-bold',
+                           classificationColorFn(IMCData.IMC)
+                        )}
+                     >
+                        {`${IMCData.IMCFormatted}`}
+                     </div>
+
+                     <div className='flex flex-row gap-5 text-lg'>
+                        <p className='flex flex-col items-center gap-1'>
+                           <Weight size={22} />
+                           {`${IMCData.weight}kg`}
+                        </p>
+                        <p className='flex flex-col items-center gap-1'>
+                           <Ruler size={22} />
+                           {`${IMCData.height}m`}
+                        </p>
+                     </div>
+                  </div>
+               ) : (
+                  <p className='text-center'>
+                     Preencha os campos acima e descubra se está no seu peso
+                     ideal
+                  </p>
+               )}
             </section>
             <ReferenceTable />
          </main>
