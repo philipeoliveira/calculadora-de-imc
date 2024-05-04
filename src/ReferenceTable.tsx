@@ -54,14 +54,14 @@ export function ReferenceTable() {
                   <td>35 a 39,99</td>
                   <td className='flex gap-2 items-center justify-center'>
                      <ThumbsDown size={16} />
-                     Obesidade II (severa)
+                     Obesidade grau II
                   </td>
                </tr>
                <tr>
                   <td>40 ou maior</td>
                   <td className='flex gap-2 items-center justify-center'>
                      <ThumbsDown size={16} />
-                     Obesidade III (mórbida)
+                     Obesidade grau III
                   </td>
                </tr>
             </tbody>
