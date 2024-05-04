@@ -151,8 +151,7 @@ function App() {
                   </div>
                ) : (
                   <p className='text-center'>
-                     Preencha os campos acima e descubra se está no seu peso
-                     ideal
+                     Preencha os campos e descubra se está no seu peso ideal
                   </p>
                )}
             </section>
