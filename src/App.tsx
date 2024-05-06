@@ -2,10 +2,10 @@ import { useState } from 'react';
 import LogoIMC from './assets/logo-img.svg';
 import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
 
-import { Input } from './Input';
-import { Label } from './Label';
-import { ReferenceTable } from './ReferenceTable';
-import { ClassificationIcon } from './ClassificationIcon';
+import { Input } from './components/Input';
+import { Label } from './components/Label';
+import { ReferenceTable } from './components/ReferenceTable';
+import { ClassificationIcon } from './components/ClassificationIcon';
 
 import { twMerge } from 'tailwind-merge';
 
