@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+
 import LogoIMC from './assets/logo-img.svg';
 import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
 
 import { Input } from './components/Input';
 import { Label } from './components/Label';
 import { ReferenceTable } from './components/ReferenceTable';
-import { ClassificationIcon } from './components/ClassificationIcon';
 
-import { twMerge } from 'tailwind-merge';
-
-import { calculateIMC, IMCClassificationsFn } from './lib/IMC';
+import { calculateIMC } from './lib/calculateIMC';
+import { IMCClassification } from './lib/IMCClassification';
 
 interface IMCDataProps {
    weight: number;
    height: number;
    IMC: number;
    IMCFormatted: string;
-   IMCClassifications: { classification: string; color: string };
+   IMCClassified: { classification: string; color: string; icon: ReactElement };
 }
 
 function App() {
@@ -63,7 +63,7 @@ function App() {
       const IMC = calculateIMC(weightNumber, heightNumber);
       const IMCFormatted = IMC.toFixed(1);
 
-      const IMCClassifications = IMCClassificationsFn(IMC);
+      const IMCClassified = IMCClassification(IMC);
 
       // Set result
       setIMCData({
@@ -71,7 +71,7 @@ function App() {
          height: heightNumber,
          IMC,
          IMCFormatted,
-         IMCClassifications,
+         IMCClassified,
       });
    }
 
@@ -120,31 +120,31 @@ function App() {
                      <div
                         className={twMerge(
                            'flex flex-col items-center gap-1 text-lg',
-                           IMCClassificationsFn(IMCData.IMC).color
+                           IMCData.IMCClassified.color
                         )}
                      >
-                        <ClassificationIcon IMC={IMCData.IMC} iconSize={22} />
-                        {`${IMCData.IMCClassifications.classification}`}
+                        {IMCData.IMCClassified.icon}
+                        <p>{IMCData.IMCClassified.classification}</p>
                      </div>
 
                      <div
                         className={twMerge(
                            'text-[3.25rem] font-bold',
-                           IMCClassificationsFn(IMCData.IMC).color
+                           IMCData.IMCClassified.color
                         )}
                      >
-                        {`${IMCData.IMCFormatted}`}
+                        <p>{IMCData.IMCFormatted}</p>
                      </div>
 
                      <div className='flex flex-row gap-5 text-lg'>
-                        <p className='flex flex-col items-center gap-1'>
+                        <div className='flex flex-col items-center gap-1'>
                            <Weight size={22} />
-                           {`${IMCData.weight}kg`}
-                        </p>
-                        <p className='flex flex-col items-center gap-1'>
+                           <p>{`${IMCData.weight}kg`}</p>
+                        </div>
+                        <div className='flex flex-col items-center gap-1'>
                            <Ruler size={22} />
-                           {`${IMCData.height}m`}
-                        </p>
+                           <p>{`${IMCData.height}m`}</p>
+                        </div>
                      </div>
                   </div>
                ) : (
@@ -156,18 +156,20 @@ function App() {
             <ReferenceTable />
          </main>
          <footer className='w-full border-y border-y-white/10 pt-2 pb-3 mt-8'>
-            <p className='flex items-center justify-center gap-2'>
-               Desenvolvido por{' '}
-               <a
-                  href='https://github.com/philipeoliveira'
-                  title='Abrir em nova aba o GitHub do autor Philipe Oliveira'
-                  target='_blank'
-                  className='font-medium my-custom-style-text-shadow bg-slate-500 hover:bg-slate-600 ml-1 px-1.5 rounded'
-               >
-                  Philipe Oliveira
-               </a>
+            <div className='flex items-center justify-center gap-2'>
+               <p>
+                  Desenvolvido por{' '}
+                  <a
+                     href='https://github.com/philipeoliveira'
+                     title='Abrir em nova aba o GitHub do autor Philipe Oliveira'
+                     target='_blank'
+                     className='font-medium my-custom-style-text-shadow bg-slate-500 hover:bg-slate-600 ml-1 px-1.5 rounded'
+                  >
+                     Philipe Oliveira
+                  </a>
+               </p>
                <ExternalLink size={16} />
-            </p>
+            </div>
          </footer>
       </div>
    );
