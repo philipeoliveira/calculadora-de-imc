@@ -1,11 +1,13 @@
 import { ReactElement } from 'react';
 import { CircleAlert, ThumbsDown, ThumbsUp } from 'lucide-react';
 
-export function IMCClassification(IMC: number): {
+interface IMCClassificationProps {
    classification: string;
    color: string;
    icon: ReactElement;
-} {
+}
+
+export function IMCClassification(IMC: number): IMCClassificationProps {
    let classification = '';
    let color = '';
    let icon;
