@@ -9,18 +9,14 @@ import { ClassificationIcon } from './components/ClassificationIcon';
 
 import { twMerge } from 'tailwind-merge';
 
-import {
-   calculateIMC,
-   IMCClassificationFn,
-   classificationColorFn,
-} from './lib/IMC';
+import { calculateIMC, IMCClassificationsFn } from './lib/IMC';
 
 interface IMCDataProps {
    weight: number;
    height: number;
    IMC: number;
    IMCFormatted: string;
-   IMCClassification: string;
+   IMCClassifications: { classification: string; color: string };
 }
 
 function App() {
@@ -67,7 +63,7 @@ function App() {
       const IMC = calculateIMC(weightNumber, heightNumber);
       const IMCFormatted = IMC.toFixed(1);
 
-      const IMCClassification = IMCClassificationFn(IMC);
+      const IMCClassifications = IMCClassificationsFn(IMC);
 
       // Set result
       setIMCData({
@@ -75,7 +71,7 @@ function App() {
          height: heightNumber,
          IMC,
          IMCFormatted,
-         IMCClassification,
+         IMCClassifications,
       });
    }
 
@@ -122,17 +118,17 @@ function App() {
                      <div
                         className={twMerge(
                            'flex flex-col items-center gap-1 text-lg',
-                           classificationColorFn(IMCData.IMC)
+                           IMCClassificationsFn(IMCData.IMC).color
                         )}
                      >
                         <ClassificationIcon IMC={IMCData.IMC} iconSize={22} />
-                        {`${IMCData.IMCClassification}`}
+                        {`${IMCData.IMCClassifications.classification}`}
                      </div>
 
                      <div
                         className={twMerge(
                            'text-[3.25rem] font-bold',
-                           classificationColorFn(IMCData.IMC)
+                           IMCClassificationsFn(IMCData.IMC).color
                         )}
                      >
                         {`${IMCData.IMCFormatted}`}
