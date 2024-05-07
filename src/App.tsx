@@ -92,6 +92,7 @@ function App() {
                      <Input
                         id='weight'
                         name='weight'
+                        maxLength={4}
                         placeholder='Digite seu peso aqui em quilogramas'
                      />
                   </div>
@@ -100,6 +101,7 @@ function App() {
                      <Input
                         id='height'
                         name='height'
+                        maxLength={3}
                         placeholder='Sua altura aqui em centímetros'
                      />
                   </div>
