@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { PatternFormat } from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 
 import LogoIMC from './assets/logo-img.svg';
 import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
@@ -91,22 +91,26 @@ function App() {
                <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                   <div>
                      <Label htmlFor='weight'>Peso (kg)</Label>
-                     <PatternFormat
+                     <NumericFormat
                         id='weight'
                         name='weight'
-                        format='##,#'
-                        customInput={Input}
+                        maxLength={5}
                         placeholder='Digite seu peso aqui em quilogramas'
+                        customInput={Input}
+                        decimalSeparator=','
+                        allowNegative={false}
                      />
                   </div>
                   <div>
                      <Label htmlFor='height'>Altura (m)</Label>
-                     <PatternFormat
+                     <NumericFormat
                         id='height'
                         name='height'
-                        format='#,##'
-                        customInput={Input}
+                        maxLength={4}
                         placeholder='Sua altura aqui em metros'
+                        customInput={Input}
+                        decimalSeparator=','
+                        allowNegative={false}
                      />
                   </div>
                   <button className='flex gap-2 items-center justify-center w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
