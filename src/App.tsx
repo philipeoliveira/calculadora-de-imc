@@ -106,7 +106,7 @@ function App() {
                         name='height'
                         format='#,##'
                         customInput={Input}
-                        placeholder='Sua altura aqui em centímetros'
+                        placeholder='Sua altura aqui em metros'
                      />
                   </div>
                   <button className='flex gap-2 items-center justify-center w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
