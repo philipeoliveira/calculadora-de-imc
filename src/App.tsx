@@ -1,5 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { PatternFormat } from 'react-number-format';
 
 import LogoIMC from './assets/logo-img.svg';
 import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
@@ -10,6 +11,7 @@ import { ReferenceTable } from './components/ReferenceTable';
 
 import { calculateIMC } from './lib/calculateIMC';
 import { IMCClassification } from './lib/IMCClassification';
+import { handleDecimalPlace } from './lib/handleDecimalPlace';
 
 interface IMCDataProps {
    weight: number;
@@ -41,7 +43,7 @@ function App() {
 
       // Parse handle string to number
       const weightNumber = parseFloat(weight.replace(',', '.'));
-      const heightNumber = parseFloat(height.replace(',', '.')) / 100;
+      const heightNumber = parseFloat(height.replace(',', '.'));
 
       if (isNaN(weightNumber) || isNaN(heightNumber)) {
          alert('Preencha somente com números.');
@@ -89,19 +91,21 @@ function App() {
                <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                   <div>
                      <Label htmlFor='weight'>Peso (kg)</Label>
-                     <Input
+                     <PatternFormat
                         id='weight'
                         name='weight'
-                        maxLength={4}
+                        format='##,#'
+                        customInput={Input}
                         placeholder='Digite seu peso aqui em quilogramas'
                      />
                   </div>
                   <div>
-                     <Label htmlFor='height'>Altura (cm)</Label>
-                     <Input
+                     <Label htmlFor='height'>Altura (m)</Label>
+                     <PatternFormat
                         id='height'
                         name='height'
-                        maxLength={3}
+                        format='#,##'
+                        customInput={Input}
                         placeholder='Sua altura aqui em centímetros'
                      />
                   </div>
@@ -139,11 +143,11 @@ function App() {
                      <div className='flex flex-row gap-5 text-lg'>
                         <div className='flex flex-col items-center gap-1'>
                            <Weight size={22} />
-                           <p>{`${IMCData.weight}kg`}</p>
+                           <p>{`${handleDecimalPlace(IMCData.weight)}kg`}</p>
                         </div>
                         <div className='flex flex-col items-center gap-1'>
                            <Ruler size={22} />
-                           <p>{`${IMCData.height}m`}</p>
+                           <p>{`${handleDecimalPlace(IMCData.height)}m`}</p>
                         </div>
                      </div>
                   </div>
