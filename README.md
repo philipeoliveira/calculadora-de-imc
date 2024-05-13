@@ -8,8 +8,8 @@
 <h2>Tecnologias</h2>
 <p>As tecnologias utilizadas foram:</p>
 <ul>
-<li>ReactJS</li>
 <li>Vite</li>
+<li>ReactJS</li>
 <li>TypeScript</li>
 <li>Tailwind CSS</li>
 <li>Tailwind Merge</li>
