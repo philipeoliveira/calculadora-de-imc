@@ -18,9 +18,14 @@
 <li>Lucide (Icons)</li>
 </ul>
 <h2>Instalação</h2>
-```bash
+<pre>
+\```
 npm install
-```
-```bash
+\```
+</pre>
+<h2>Rodar o projeto</h2>
+<pre>
+\```
 npm run dev
-```
+\```
+</pre>
