@@ -71,12 +71,12 @@ function App() {
 
       // Handle invalid numbers
       if (weightNumber < 1 || weightNumber > 700) {
-         toast.error('Preencha o Peso entre 1kg e 700kg');
+         toast.error('Peso entre 1kg e 700kg');
          return;
       }
 
       if (heightNumber < 0.2 || heightNumber > 2.5) {
-         toast.error('Preencha a Altura entre 20cm e 2,5m');
+         toast.error('Altura entre 20cm e 2,5m');
          return;
       }
 
@@ -95,6 +95,7 @@ function App() {
          IMCClassified,
       });
 
+      // Clear fields
       setFormData({
          weight: '',
          height: '',
@@ -102,12 +103,12 @@ function App() {
    }
 
    return (
-      <div className='max-w-lg mx-auto flex flex-col gap-6'>
+      <div className='max-w-lg mx-auto flex flex-col gap-4 md:gap-6'>
          <header className='flex justify-center'>
             <img
                src={LogoIMC}
                alt='Índice de Massa Corporal'
-               className='w-44 sm:w-60'
+               className='w-40 sm:w-60'
             />
          </header>
          <main className='flex flex-col gap-2'>
@@ -121,7 +122,7 @@ function App() {
                         maxLength={5}
                         onChange={handleChange}
                         value={formData.weight}
-                        placeholder='Digite seu peso aqui em quilogramas'
+                        placeholder='Seu peso aqui em quilogramas'
                         customInput={Input}
                         decimalSeparator=','
                         allowNegative={false}
@@ -142,20 +143,20 @@ function App() {
                      />
                   </div>
                   <button className='flex gap-2 items-center justify-center w-full mt-4 rounded-lg font-medium p-3 bg-slate-500 hover:bg-slate-600 my-custom-style-text-shadow'>
-                     <Calculator size={16} />
+                     <Calculator className='w-4 h-4 md:w-6 md:h-6' />
                      Calcular IMC
                   </button>
                </form>
             </section>
             <section
                id='result'
-               className='flex flex-col justify-center rounded-lg border border-white/10 my-10 px-4 h-32'
+               className='flex flex-col justify-center rounded-lg border border-white/10 my-6 md:my-10 px-4 h-36 sm:h-32'
             >
                {IMCData ? (
-                  <div className='grid grid-flow-col place-items-center gap-5'>
+                  <div className='flex flex-col sm:grid sm:grid-flow-col place-items-center gap-2 md:gap-5'>
                      <div
                         className={twMerge(
-                           'flex flex-col items-center gap-1 text-lg',
+                           'flex md:flex-col items-center gap-2 md:gap-1 text-lg',
                            IMCData.IMCClassified.color
                         )}
                      >
@@ -165,20 +166,20 @@ function App() {
 
                      <div
                         className={twMerge(
-                           'text-[3.25rem] font-bold',
+                           'text-4xl md:text-[3.25rem] font-bold',
                            IMCData.IMCClassified.color
                         )}
                      >
                         <p>{IMCData.IMCFormatted}</p>
                      </div>
 
-                     <div className='flex flex-row gap-5 text-lg'>
-                        <div className='flex flex-col items-center gap-1'>
-                           <Weight size={22} />
+                     <div className='flex flex-row items-center gap-5 md:text-lg'>
+                        <div className='flex sm:flex-col items-center justify-normal gap-2 md:gap-1'>
+                           <Weight className='w-4 h-4 md:w-6 md:h-6' />
                            <p>{`${handleDecimalPlace(IMCData.weight)}kg`}</p>
                         </div>
-                        <div className='flex flex-col items-center gap-1'>
-                           <Ruler size={22} />
+                        <div className='flex sm:flex-col items-center justify-normal gap-2 md:gap-1'>
+                           <Ruler className='w-4 h-4 md:w-6 md:h-6' />
                            <p>{`${handleDecimalPlace(IMCData.height)}m`}</p>
                         </div>
                      </div>
@@ -210,14 +211,13 @@ function App() {
          <Toaster
             position='top-center'
             icons={{
-               error: <CircleAlert />,
+               error: <CircleAlert size={18} />,
             }}
             toastOptions={{
                unstyled: true,
                classNames: {
-                  toast: 'flex gap-3 items-center justify-center w-full px-3 py-6 bg-white rounded-lg font-medium ',
-                  title: 'text-red-400',
-                  error: 'text-red-400',
+                  toast: 'flex gap-1 items-center justify-center w-full px-2 md:px-3 py-2 md:py-6 bg-slate-400 rounded-lg text-slate-900 font-medium drop-shadow',
+                  title: 'text-slate-900',
                },
             }}
          />
