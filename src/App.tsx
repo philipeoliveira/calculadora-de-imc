@@ -21,21 +21,33 @@ interface IMCDataProps {
    IMCClassified: { classification: string; color: string; icon: ReactElement };
 }
 
+interface formDataProps {
+   weight: string;
+   height: string;
+}
+
 function App() {
    const [IMCData, setIMCData] = useState<null | IMCDataProps>(null);
+   const [formData, setFormData] = useState<formDataProps>({
+      weight: '',
+      height: '',
+   });
+
+   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+      const { name, value } = e.target;
+
+      setFormData({
+         ...formData,
+         [name]: value,
+      });
+   }
 
    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
       e.preventDefault();
 
-      // Get data from form
-      const formData = new FormData(e.currentTarget);
-      const data = Object.fromEntries(formData) as {
-         weight: string;
-         height: string;
-      };
+      const { weight, height } = formData;
 
       // Handle empty fields
-      const { weight, height } = data;
       if (!weight || !height) {
          alert('Preencha todos os campos.');
          return;
@@ -75,6 +87,11 @@ function App() {
          IMCFormatted,
          IMCClassified,
       });
+
+      setFormData({
+         weight: '',
+         height: '',
+      });
    }
 
    return (
@@ -95,6 +112,8 @@ function App() {
                         id='weight'
                         name='weight'
                         maxLength={5}
+                        onChange={handleChange}
+                        value={formData.weight}
                         placeholder='Digite seu peso aqui em quilogramas'
                         customInput={Input}
                         decimalSeparator=','
@@ -107,6 +126,8 @@ function App() {
                         id='height'
                         name='height'
                         maxLength={4}
+                        onChange={handleChange}
+                        value={formData.height}
                         placeholder='Sua altura aqui em metros'
                         customInput={Input}
                         decimalSeparator=','
