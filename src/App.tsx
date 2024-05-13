@@ -1,9 +1,16 @@
 import { ReactElement, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { NumericFormat } from 'react-number-format';
+import { Toaster, toast } from 'sonner';
 
 import LogoIMC from './assets/logo-img.svg';
-import { Calculator, Weight, Ruler, ExternalLink } from 'lucide-react';
+import {
+   Calculator,
+   Weight,
+   Ruler,
+   ExternalLink,
+   CircleAlert,
+} from 'lucide-react';
 
 import { Input } from './components/Input';
 import { Label } from './components/Label';
@@ -49,7 +56,7 @@ function App() {
 
       // Handle empty fields
       if (!weight || !height) {
-         alert('Preencha todos os campos.');
+         toast.error('Preencha todos os campos');
          return;
       }
 
@@ -58,18 +65,18 @@ function App() {
       const heightNumber = parseFloat(height.replace(',', '.'));
 
       if (isNaN(weightNumber) || isNaN(heightNumber)) {
-         alert('Preencha somente com números.');
+         toast.error('Preencha somente com números');
          return;
       }
 
       // Handle invalid numbers
       if (weightNumber < 1 || weightNumber > 700) {
-         alert('Preencha um peso entre 1kg e 700kg.');
+         toast.error('Preencha o Peso entre 1kg e 700kg');
          return;
       }
 
       if (heightNumber < 0.2 || heightNumber > 2.5) {
-         alert('Preencha uma altura entre 20cm e 2,5m.');
+         toast.error('Preencha a Altura entre 20cm e 2,5m');
          return;
       }
 
@@ -200,6 +207,20 @@ function App() {
                <ExternalLink size={16} />
             </div>
          </footer>
+         <Toaster
+            position='top-center'
+            icons={{
+               error: <CircleAlert />,
+            }}
+            toastOptions={{
+               unstyled: true,
+               classNames: {
+                  toast: 'flex gap-3 items-center justify-center w-full px-3 py-6 bg-white rounded-lg font-medium ',
+                  title: 'text-red-400',
+                  error: 'text-red-400',
+               },
+            }}
+         />
       </div>
    );
 }
