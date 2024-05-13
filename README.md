@@ -19,10 +19,12 @@
 </ul>
 <h2>Instalação</h2>
 
-````bash
+```bash
 npm install
+```
+
+<h2>Rodar o projeto</h2>
 
 ```bash
 npm run dev
-
-````
+```
