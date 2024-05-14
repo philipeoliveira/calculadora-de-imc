@@ -28,14 +28,9 @@ interface IMCDataProps {
    IMCClassified: { classification: string; color: string; icon: ReactElement };
 }
 
-interface formDataProps {
-   weight: string;
-   height: string;
-}
-
 function App() {
    const [IMCData, setIMCData] = useState<null | IMCDataProps>(null);
-   const [formData, setFormData] = useState<formDataProps>({
+   const [formData, setFormData] = useState({
       weight: '',
       height: '',
    });
